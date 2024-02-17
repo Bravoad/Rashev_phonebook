@@ -3,7 +3,7 @@ from typing import List
 
 
 class Phonebook:
-    def __init__(self, filename: str):
+    def __init__(self, filename: str) -> None:
         self.filename = filename
 
     def add_record(self) -> None:
@@ -56,7 +56,7 @@ class Phonebook:
             page += 1
 
 
-def main():
+def main() -> None:
     phonebook = Phonebook('phonebook.csv')
     while True:
         print("\nТелефонный справочник")
