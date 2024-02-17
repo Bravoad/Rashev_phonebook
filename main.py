@@ -1,9 +1,10 @@
 import csv
 
+
 # Функция для добавления новой записи в справочник
 
 
-def add_record(filename):
+def add_record(filename: str) -> None:
     with open(filename, 'a', newline='') as file:
         writer = csv.writer(file)
         surname = input("Введите фамилию: ")
@@ -14,10 +15,11 @@ def add_record(filename):
         personal_phone = input("Введите личный телефон: ")
         writer.writerow([surname, name, patronymic, organization, work_phone, personal_phone])
 
+
 # Функция для редактирования записи в справочнике
 
 
-def edit_record(filename):
+def edit_record(filename: str) -> None:
     records = read_records(filename)
     surname = input("Введите фамилию для редактирования: ")
     for i, record in enumerate(records):
@@ -30,34 +32,38 @@ def edit_record(filename):
             break
     write_records(filename, records)
 
+
 # Функция для поиска записей по одной или нескольким характеристикам
 
 
-def search_records(filename, search_term):
+def search_records(filename: str, search_term: str) -> list:
     records = read_records(filename)
     found_records = [record for record in records if search_term in record]
     return found_records
 
+
 # Функция для чтения записей из файла
 
 
-def read_records(filename):
+def read_records(filename: str) -> list:
     with open(filename, 'r') as file:
         reader = csv.reader(file)
         return list(reader)
 
+
 # Функция для записи записей в файл
 
 
-def write_records(filename, records):
+def write_records(filename: str, records: list) -> None:
     with open(filename, 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerows(records)
 
+
 # Функция для вывода постранично записей из справочника на экран
 
 
-def print_records(filename, page_size=10):
+def print_records(filename: str, page_size: int = 10) -> None:
     records = read_records(filename)
     page = 0
     while page * page_size < len(records):
@@ -67,10 +73,11 @@ def print_records(filename, page_size=10):
         input("Нажмите Enter для продолжения...")
         page += 1
 
+
 # Главная функция для управления справочником
 
 
-def main():
+def main() -> None:
     filename = 'phonebook.csv'
     while True:
         print("\nТелефонный справочник")
